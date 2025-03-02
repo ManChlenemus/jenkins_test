@@ -1,0 +1,10 @@
+^D:\MY-JENKINS-PROJECT\JENKINS-TEST\BUILD\CMAKEFILES\C1B4D04E45EF7C9959A32EA248C0CA69\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/my-jenkins-project/jenkins-test -BD:/my-jenkins-project/jenkins-test/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/my-jenkins-project/jenkins-test/build/jenkins_test.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

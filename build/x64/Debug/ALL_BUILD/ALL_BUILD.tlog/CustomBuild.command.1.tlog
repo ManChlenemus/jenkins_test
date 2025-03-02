@@ -1,0 +1,10 @@
+^D:\MY-JENKINS-PROJECT\JENKINS-TEST\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/my-jenkins-project/jenkins-test -BD:/my-jenkins-project/jenkins-test/build --check-stamp-file D:/my-jenkins-project/jenkins-test/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

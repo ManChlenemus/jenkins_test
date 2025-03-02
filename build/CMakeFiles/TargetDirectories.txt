@@ -1,0 +1,3 @@
+D:/my-jenkins-project/jenkins-test/build/CMakeFiles/jenkins_test.dir
+D:/my-jenkins-project/jenkins-test/build/CMakeFiles/ALL_BUILD.dir
+D:/my-jenkins-project/jenkins-test/build/CMakeFiles/ZERO_CHECK.dir
