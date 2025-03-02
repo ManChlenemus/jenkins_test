@@ -1,48 +1,49 @@
 pipeline {
-    agent any  // Запускаем Pipeline на любом доступном агенте
+    agent any  // Запуск на любом доступном агенте
+
+    environment {
+        // Переменные окружения (опционально)
+        BUILD_DIR = "build"
+        EXECUTABLE = "bin/MyJenkinsProject"
+    }
 
     stages {
-        // Этап подготовки (опционально)
+        // Этап подготовки
         stage('Prepare') {
             steps {
                 echo "Preparing the environment..."
-                // Очистка рабочей директории (опционально)
-                cleanWs()
+                cleanWs()  // Очистка рабочей директории
             }
         }
 
-        // Этап сборки проекта
+        // Этап сборки
         stage('Build') {
             steps {
                 echo "Building the project..."
                 script {
-                    // Для Windows
                     bat '''
-                        mkdir build
-                        cd build
+                        mkdir ${BUILD_DIR}
+                        cd ${BUILD_DIR}
                         cmake ..
                         cmake --build . --config Debug
                     '''
-                    // Для Linux/macOS замените bat на sh и используйте:
-                    // sh '''
-                    //     mkdir -p build
-                    //     cd build
-                    //     cmake ..
-                    //     cmake --build .
-                    // '''
                 }
             }
         }
 
-        // Этап запуска тестов
+        // Этап тестирования
         stage('Test') {
             steps {
                 echo "Running tests..."
                 script {
-                    // Для Windows
                     bat '''
-                        cd build
-                        ./Debug/MyJenkinsProject.exe
+                        cd ${BUILD_DIR}
+                        if exist ${EXECUTABLE} (
+                            ${EXECUTABLE}
+                        ) else (
+                            echo "Error: Executable not found!"
+                            exit 1
+                        )
                     '''
                 }
             }
@@ -52,13 +53,12 @@ pipeline {
         stage('Archive Artifacts') {
             steps {
                 echo "Archiving artifacts..."
-                archiveArtifacts artifacts: 'build/**/*.exe', fingerprint: true  // Для Windows
-                // archiveArtifacts artifacts: 'build/MyJenkinsProject', fingerprint: true  // Для Linux/macOS
+                archiveArtifacts artifacts: '${BUILD_DIR}/**/*.exe', fingerprint: true
             }
         }
     }
 
-    // Пост-обработка (опционально)
+    // Пост-обработка
     post {
         success {
             echo "Pipeline succeeded!"
