@@ -8,6 +8,7 @@ pipeline {
                 cleanWs()  // Очистка рабочей директории
             }
         }
+
         stage('Checkout') {
             steps {
                 echo 'Checking out the repository...'
@@ -20,9 +21,10 @@ pipeline {
             steps {
                 echo 'Building the project...'
                 script {
-                    // Создаем директорию для сборки
-                    bat 'mkdir build2'  // Создай директорию build2
-                    dir ('build2') {
+                    // Создаем директорию для сборки (если она не существует)
+                    bat 'if not exist build2 mkdir build2'
+                    dir('build2') {
+                        // Генерируем файлы сборки и собираем проект
                         bat 'cmake ..'
                         bat 'cmake --build . --config Debug'
                     }
@@ -34,9 +36,10 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 script {
+                    // Проверяем содержимое рабочей директории
                     bat 'dir'
+                    // Запускаем тестовый скрипт
                     bat '.\\test.bat'
-
                 }
             }
         }
