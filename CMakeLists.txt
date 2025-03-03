@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.29)
-project(jenkins_test)
+cmake_minimum_required(VERSION 3.10)  # Минимальная версия CMake
 
-set(CMAKE_CXX_STANDARD 20)
+project(jenkins-test)  # Название проекта
 
-add_executable(jenkins_test main.cpp)
+set(CMAKE_CXX_STANDARD 14)  # Используем стандарт C++14
+
+# Добавляем исполняемый файл
+add_executable(jenkins-test main.cpp)
