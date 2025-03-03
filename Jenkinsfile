@@ -34,9 +34,10 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 script {
-                    // Запускаем тестовый скрипт
-                    bat 'cd build2'
-                    bat '..\\test.bat'
+                    bat '''
+                        echo Current directory: %cd%
+                        ..\\test.bat
+                    '''
                 }
             }
         }
