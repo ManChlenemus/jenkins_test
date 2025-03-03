@@ -1,6 +1,9 @@
 pipeline {
     agent any  // Запускать на любом доступном агенте
 
+    triggers {
+        githubPush()
+    }
     stages {
         stage('Prepare') {
             steps {
