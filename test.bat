@@ -1,21 +1,19 @@
 @echo off
+REM Запускаем программу и сохраняем вывод в файл
+.\build2\Debug\jenkins-test.exe > output.txt
 
-REM Compile the C++ program (if necessary - assumes g++ is installed and in PATH)
-REM g++ main.cpp -o main.exe
+REM Читаем вывод из файла
+SET /P output=<output.txt
 
-REM Run the program and capture the output
-FOR /F "tokens=*" %%A IN ('main.exe') DO (
-    SET output=%%A
-)
-
-REM Define the expected output
+REM Ожидаемый результат
 SET expected=hello
 
-REM Compare the actual and expected outputs
+REM Сравниваем вывод с ожидаемым результатом
 IF "%output%"=="%expected%" (
     echo Test passed!
-    exit 0
+    exit /b 0
 ) ELSE (
-    echo Test failed! Expected "%expected%", but got "%output%"
-    exit 1
+    echo Test failed!
+    echo Expected: "%expected%", but got: "%output%"
+    exit /b 1
 )
