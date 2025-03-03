@@ -21,8 +21,8 @@ pipeline {
                 echo 'Building the project...'
                 script {
                     // Создаем директорию для сборки
-                    bat 'mkdir build2'  // Создай директорию build2
-                    dir ('build2') {
+                    bat 'mkdir build'  // Создай директорию build2
+                    dir ('build') {
                         bat 'cmake ..'
                         bat 'cmake --build . --config Debug'
                     }
