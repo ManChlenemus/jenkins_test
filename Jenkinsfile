@@ -23,7 +23,7 @@ pipeline {
                 script {
                     // Создаем директорию для сборки
                     bat 'mkdir test_build'
-                    bat 'cd build'
+                    bat 'cd test_build'
 
                     // Запускаем CMake и собираем проект
                     bat 'cmake ..'
