@@ -22,10 +22,10 @@ pipeline {
                 script {
                     // Создаем директорию для сборки
                     bat 'mkdir build2'  // Создай директорию build2
-                    bat cwd 'build2'     // Перейди в директорию build2
-                    bat 'cmake ..'
-                    bat 'cmake --build . --config Debug'
-
+                    dir ('build2') {
+                        bat 'cmake ..'
+                        bat 'cmake --build . --config Debug'
+                    }
 
                     echo 'Checking out the repository...'
                     checkout scm  // Клонирование репозитория
