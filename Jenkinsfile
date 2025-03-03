@@ -34,10 +34,8 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 script {
-                    bat '''
-                        echo Current directory: %cd%
-                        ..\\test.bat
-                    '''
+                    bat 'test.bat'
+
                 }
             }
         }
