@@ -4,4 +4,4 @@ int main() {
     std::cout << "hello" << std::endl;
     return 0;
 }
-// изменение в коде
+// изменение в коде 3
