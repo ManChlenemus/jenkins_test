@@ -13,7 +13,6 @@ pipeline {
                 echo 'Checking out the repository...'
                 checkout scm  // Клонирование репозитория
                 bat 'dir'  // Вывод содержимого рабочей директории (для Windows)
-                // sh 'ls -la'  // Для Linux
             }
         }
 
@@ -23,10 +22,10 @@ pipeline {
                 script {
                     // Создаем директорию для сборки
                     bat 'mkdir test_build'
-                    bat 'cd .\ test_build'
+                    bat 'cd test_build'
 
                     // Запускаем CMake и собираем проект
-                    bat 'cmake ..'
+                    bat 'cmake .'
                     bat 'cmake --build . --config Debug'
                 }
             }
