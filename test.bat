@@ -1,21 +1,21 @@
 @echo off
-SETLOCAL ENABLEDELAYEDEXPANSION
 
-REM Запускаем программу и перенаправляем вывод в файл
-jenkins-test > output.txt
+REM Compile the C++ program (if necessary - assumes g++ is installed and in PATH)
+REM g++ main.cpp -o main.exe
 
-REM Читаем первую строку из файла
-SET /P output=<output.txt
-
-REM Ожидаемый результат
-SET "expected=hello"
-
-IF "!output!"=="!expected!" (
-    echo Test passed!
-    exit /b 0
-) ELSE (
-    echo Test fled!
-    exit /b 1
+REM Run the program and capture the output
+FOR /F "tokens=*" %%A IN ('main.exe') DO (
+    SET output=%%A
 )
 
-ENDLOCAL
+REM Define the expected output
+SET expected=hello
+
+REM Compare the actual and expected outputs
+IF "%output%"=="%expected%" (
+    echo Test passed!
+    exit 0
+) ELSE (
+    echo Test failed! Expected "%expected%", but got "%output%"
+    exit 1
+)
