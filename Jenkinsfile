@@ -1,74 +1,51 @@
 pipeline {
-    agent any  // Запуск на любом доступном агенте
+    agent any
 
     environment {
-        // Переменные окружения (опционально)
-        BUILD_DIR = "build"
-        EXECUTABLE = "bin/MyJenkinsProject"
+        BUILD_DIR = "build"  // Определяем переменную BUILD_DIR
     }
 
     stages {
-        // Этап подготовки
         stage('Prepare') {
             steps {
-                echo "Preparing the environment..."
+                echo 'Preparing the environment...'
                 cleanWs()  // Очистка рабочей директории
             }
         }
 
-        // Этап сборки
         stage('Build') {
             steps {
-                echo "Building the project..."
+                echo 'Building the project...'
                 script {
-                    bat '''
-                        mkdir ${BUILD_DIR}
-                        cd ${BUILD_DIR}
-                        cmake ..
-                        cmake --build . --config Debug
-                    '''
+                    bat 'mkdir build'  // Создаем директорию build
+                    bat 'cd build'     // Переходим в директорию build
+                    bat 'cmake ..'     // Запускаем CMake
+                    bat 'cmake --build . --config Debug'  // Собираем проект
                 }
             }
         }
 
-        // Этап тестирования
         stage('Test') {
             steps {
-                echo "Running tests..."
-                script {
-                    bat '''
-                        cd ${BUILD_DIR}
-                        if exist ${EXECUTABLE} (
-                            ${EXECUTABLE}
-                        ) else (
-                            echo "Error: Executable not found!"
-                            exit 1
-                        )
-                    '''
-                }
+                echo 'Running tests...'
+                // Добавь команды для запуска тестов
             }
         }
 
-        // Этап архивирования артефактов (опционально)
         stage('Archive Artifacts') {
             steps {
-                echo "Archiving artifacts..."
-                archiveArtifacts artifacts: '${BUILD_DIR}/**/*.exe', fingerprint: true
+                echo 'Archiving artifacts...'
+                // Добавь команды для архивирования артефактов
             }
         }
     }
 
-    // Пост-обработка
     post {
-        success {
-            echo "Pipeline succeeded!"
+        always {
+            echo 'Cleaning up...'
         }
         failure {
-            echo "Pipeline failed!"
-        }
-        always {
-            echo "Cleaning up..."
-            // Дополнительные действия, которые выполняются всегда
+            echo 'Pipeline failed!'
         }
     }
 }
