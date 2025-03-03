@@ -24,8 +24,12 @@ pipeline {
                     bat 'mkdir test_build'
                     bat 'cd test_build'
 
+                    echo 'Checking out the repository...'
+                    checkout scm  // Клонирование репозитория
+                    bat 'dir'
+
                     // Запускаем CMake и собираем проект
-                    bat 'cmake .'
+                    bat 'cmake ..'
                     bat 'cmake --build . --config Debug'
                 }
             }
