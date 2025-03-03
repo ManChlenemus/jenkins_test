@@ -5,7 +5,7 @@ FOR /F "tokens=*" %%A IN ('jenkins-test') DO (
     SET output=%%A
 )
 
-SET expected=1
+SET expected=hello
 
 IF "%output%"=="%expected%" (
     echo Test passed!
