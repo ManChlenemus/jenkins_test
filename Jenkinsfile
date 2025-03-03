@@ -22,11 +22,11 @@ pipeline {
                 echo 'Building the project...'
                 script {
                     // Создаем директорию для сборки
-                    bat 'mkdir build'
+                    bat 'mkdir test_build'
                     bat 'cd build'
 
                     // Запускаем CMake и собираем проект
-                    bat 'cmake .'
+                    bat 'cmake ..'
                     bat 'cmake --build . --config Debug'
                 }
             }
