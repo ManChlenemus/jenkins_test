@@ -35,7 +35,7 @@ pipeline {
                 echo 'Running tests...'
                 script {
                     bat 'dir'
-                    bat 'test.bat'
+                    bat 'C:\ProgramData\Jenkins\.jenkins\workspace\MyJenkinsProject\test.bat'
 
                 }
             }
