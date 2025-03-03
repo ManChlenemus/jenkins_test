@@ -21,8 +21,11 @@ pipeline {
                 echo 'Building the project...'
                 script {
                     // Создаем директорию для сборки
-                    bat 'mkdir test_build'
-                    bat 'cd C:\ProgramData\Jenkins\.jenkins\workspace\MyJenkinsProject\test_build'
+                    bat 'mkdir build'  // Создай директорию build
+                    dir('build') {     // Перейди в директорию build
+                        bat 'cmake ..'
+                        bat 'cmake --build . --config Debug'
+                    }
 
                     echo 'Checking out the repository...'
                     checkout scm  // Клонирование репозитория
