@@ -1,3 +1,3 @@
-D:/my-jenkins-project/jenkins-test/cmake-build-debug/CMakeFiles/jenkins_test.dir
+D:/my-jenkins-project/jenkins-test/cmake-build-debug/CMakeFiles/jenkins-test.dir
 D:/my-jenkins-project/jenkins-test/cmake-build-debug/CMakeFiles/edit_cache.dir
 D:/my-jenkins-project/jenkins-test/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -8,6 +8,14 @@ pipeline {
                 cleanWs()  // Очистка рабочей директории
             }
         }
+        stage('Checkout') {
+            steps {
+                echo 'Checking out the repository...'
+                checkout scm  // Клонирование репозитория
+                bat 'dir'  // Вывод содержимого рабочей директории (для Windows)
+                // sh 'ls -la'  // Для Linux
+            }
+        }
 
         stage('Build') {
             steps {
