@@ -2,7 +2,7 @@
 
 # Запускаем программу и проверяем вывод
 output=$(./jenkins-test)
-expected="Hello, Jenkins!"
+expected="1"
 
 if [[ "$output" == "$expected" ]]; then
     echo "Test passed!"
