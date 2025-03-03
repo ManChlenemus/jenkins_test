@@ -34,6 +34,7 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 script {
+                    bat 'dir'
                     bat 'test.bat'
 
                 }
