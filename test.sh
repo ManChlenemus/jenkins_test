@@ -1,13 +1,16 @@
-#!/bin/bash
+@echo off
 
-# Запускаем программу и проверяем вывод
-output=$(./jenkins-test)
-expected="1"
+REM Запускаем программу и сохраняем вывод в переменную
+FOR /F "tokens=*" %%A IN ('jenkins-test') DO (
+    SET output=%%A
+)
 
-if [[ "$output" == "$expected" ]]; then
-    echo "Test passed!"
+SET expected=1
+
+IF "%output%"=="%expected%" (
+    echo Test passed!
     exit 0
-else
-    echo "Test failed!"
+) ELSE (
+    echo Test failed!
     exit 1
-fi
+)
