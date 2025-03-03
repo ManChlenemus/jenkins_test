@@ -35,7 +35,7 @@ pipeline {
                 echo 'Running tests...'
                 script {
                     bat 'dir'
-                    bat '.\test.bat'
+                    bat '.\\test.bat'
 
                 }
             }
