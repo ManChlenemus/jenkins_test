@@ -26,14 +26,6 @@ pipeline {
                         bat 'cmake ..'
                         bat 'cmake --build . --config Debug'
                     }
-
-                    echo 'Checking out the repository...'
-                    checkout scm  // Клонирование репозитория
-                    bat 'dir'
-
-                    // Запускаем CMake и собираем проект
-                    bat 'cmake ..'
-                    bat 'cmake --build . --config Debug'
                 }
             }
         }
