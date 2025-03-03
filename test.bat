@@ -1,23 +1,20 @@
 @echo off
-REM Очищаем переменную output
-SET output=
-
-REM Запускаем программу и сохраняем весь вывод в переменную
-FOR /F "delims=" %%A IN ('jenkins-test') DO (
-    SET "output=%%A"
-)
-
-REM Обходим проблему с расширением переменных внутри IF
-SET "expected=hello"
-
-REM Включаем расширенное расширение переменных
 SETLOCAL ENABLEDELAYEDEXPANSION
+
+REM Запускаем программу и перенаправляем вывод в файл
+jenkins-test > output.txt
+
+REM Читаем первую строку из файла
+SET /P output=<output.txt
+
+REM Ожидаемый результат
+SET "expected=hello"
 
 IF "!output!"=="!expected!" (
     echo Test passed!
     exit /b 0
 ) ELSE (
-    echo Test failed!
+    echo Test fled!
     exit /b 1
 )
 
