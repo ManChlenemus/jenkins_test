@@ -22,7 +22,7 @@ pipeline {
                 script {
                     // Создаем директорию для сборки
                     bat 'mkdir test_build'
-                    bat 'cd test_build'
+                    bat 'cd C:\ProgramData\Jenkins\.jenkins\workspace\MyJenkinsProject\test_build'
 
                     echo 'Checking out the repository...'
                     checkout scm  // Клонирование репозитория
