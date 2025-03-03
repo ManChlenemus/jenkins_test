@@ -26,7 +26,7 @@ pipeline {
                     bat 'cd build'
 
                     // Запускаем CMake и собираем проект
-                    bat 'cmake ..'
+                    bat 'cmake .'
                     bat 'cmake --build . --config Debug'
                 }
             }
