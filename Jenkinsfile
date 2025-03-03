@@ -21,10 +21,10 @@ pipeline {
                 echo 'Building the project...'
                 script {
                     // Создаем директорию для сборки
-                    bat 'mkdir build2'  // Создай директорию build
+                    sh 'mkdir build2'  // Создай директорию build
                     dir('build2') {     // Перейди в директорию build
-                        bat 'cmake ..'
-                        bat 'cmake --build . --config Debug'
+                        sh 'cmake ..'
+                        sh 'cmake --build . --config Debug'
                     }
 
                     echo 'Checking out the repository...'
