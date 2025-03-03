@@ -35,7 +35,7 @@ pipeline {
                 echo 'Running tests...'
                 script {
                     // Запускаем тестовый скрипт
-                    bat 'cd build'
+                    bat 'cd build2'
                     bat '..\\test.sh'
                 }
             }
